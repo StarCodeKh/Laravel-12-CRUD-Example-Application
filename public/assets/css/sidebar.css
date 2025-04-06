@@ -1,0 +1,208 @@
+:root {
+    --sidebar-width: 280px;
+    --sidebar-width-collapsed: 80px;
+    --primary-bg-color: rgba(18, 18, 18, 0.8);
+    --secondary-bg-color: rgba(31, 31, 31, 0.8);
+    --highlight-color: rgba(252, 3, 3, 0.8);
+    --text-color: rgba(224, 224, 224, 1);
+    --hover-bg-color: rgba(255, 255, 255, 0.1);
+    --active-bg-color: rgba(255, 255, 255, 0.2);
+    --link-hover-color: rgba(255, 255, 255, 1);
+}
+
+.main-content {
+    padding: 0px !important;
+    padding-right: 10px !important;
+    padding-left: 12px !important;
+}
+
+.navbar {
+    background: linear-gradient(135deg, var(--primary-bg-color) 0%, var(--secondary-bg-color) 100%);
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: linear-gradient(135deg, var(--primary-bg-color) 0%, var(--secondary-bg-color) 100%);
+    transition: all 0.3s ease;
+    z-index: 1030;
+}
+
+.sidebar.collapsed {
+    width: var(--sidebar-width-collapsed);
+}
+
+.sidebar-link {
+    color: var(--text-color);
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin: 4px 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    background: transparent;
+}
+
+.sidebar-link:hover {
+    color: var(--link-hover-color);
+    background: var(--hover-bg-color);
+    transform: translateX(5px);
+}
+
+.sidebar-link.active {
+    color: var(--link-hover-color);
+    background: var(--active-bg-color);
+}
+
+.logo-text {
+    background: linear-gradient(45deg, rgba(248, 248, 248, 0.989), rgba(135, 135, 135, 0.975));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: opacity 0.3s ease;
+}
+
+.profile-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.main-content {
+    width: calc(100% - var(--sidebar-width));
+    margin-left: var(--sidebar-width);
+    background-color: transparent;
+    min-height: 100vh;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.sidebar.collapsed ~ .main-content {
+    width: calc(100% - var(--sidebar-width-collapsed)); /* Adjust when collapsed */
+    margin-left: var(--sidebar-width-collapsed);
+}
+
+.toggle-btn {
+    position: absolute;
+    right: -15px;
+    top: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed .toggle-btn {
+    transform: rotate(180deg);
+}
+
+.sidebar.collapsed .hide-on-collapse {
+    display: none;
+}
+
+.sidebar.collapsed .logo-text {
+    display: none;
+}
+
+.sidebar.collapsed .profile-info {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-link {
+    text-align: center;
+    padding: 1rem !important;
+}
+
+.sidebar.collapsed .sidebar-link i {
+    margin: 0 !important;
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.sidebar.collapsed .sidebar-link span {
+    display: none;
+}
+
+.logo-text.sk {
+    display: none;
+}
+
+.card {
+    border: none !important;
+}
+
+.logo-text, .logo-text.sk {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.logo-text.hidden, .logo-text.sk.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.icon-circle {
+    width: 36px;
+    height: 36px;
+    background: var(--active-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.icon-circle:hover {
+    width: 36px;
+    height: 36px;
+    color: #fff !important;
+    background: #36495c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.notification-dot {
+    position: absolute !important;
+    top: 8px !important;
+    left: 26px !important;
+    width: 8px !important;
+    height: 8px !important;
+}
+
+.dropdown-menu {
+    background-color: #df000000 !important;
+    --bs-dropdown-border-color: rgba(255, 0, 0, 0) !important;
+    border: rgba(255, 0, 0, 0) solid #dddddd00 !important;
+}
+
+.profile-card {
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  background: #fff;
+  position: relative;
+}
+
+.pro-badge {
+  font-size: 0.75rem;
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+.sign-out {
+  color: #dc3545;
+  font-weight: 500;
+  text-decoration: none
+}
+
+.sign-out:hover {
+  color: #bd2130;
+  text-decoration: underline;
+  text-decoration: none
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://www.souysoeng.com/favicon.ico' rel='icon' type='image/x-icon'/>
+    <title>{{ config('app.name', 'StarCodeKh') }}</title>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Style Custome -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/sidebar.css') }}">
+    @yield('styles')
+</head>
+<body>
+    <div class="d-flex flex-column min-vh-100">
+        <!-- Sidebar -->
+        @include('layouts.sidebar')
+    </div>
+    
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- imessage -->
+    <script src="{{ asset('assets/js/imessage.js') }}"></script>
+    <script src="{{ asset('assets/js/theme.js') }}"></script>
+    <script src="{{ asset('assets/js/language-switch.js') }}"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let messages = {
+                success: "{{ session('success') }}",
+                error: "{{ session('error') }}",
+                warning: "{{ session('warning') }}",
+                info: "{{ session('info') }}"
+            };
+
+            Object.keys(messages).forEach(type => {
+                if (messages[type]) {
+                    new Message('imessage').show(messages[type], type === "error" ? "fail" : type, "top-center");
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const logoText = document.querySelector('.logo-text');
+            const logoTextSK = document.querySelector('.logo-text.sk');
+
+            sidebar.classList.toggle('collapsed');
+            logoText.style.display = 'none';
+
+            if (sidebar.classList.contains('collapsed')) {
+                setTimeout(function() {
+                    logoText.style.display = 'none';
+                    logoTextSK.style.display = 'block';
+                }, 200);
+            } else {
+                setTimeout(function() {
+                    logoText.style.display = 'block';
+                    logoTextSK.style.display = 'none';
+                }, 200);
+            }
+        }
+    </script>
+
+    @yield('script')
+    
+</body>
+</html>
