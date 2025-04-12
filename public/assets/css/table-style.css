@@ -1,4 +1,10 @@
 /* table custome  */
+
+.th-active-fixed {
+    position: sticky; 
+    left: 0; background: white; 
+    z-index: 2;
+}
 .margin-top-center {
     margin-top: 4px !important;
 }

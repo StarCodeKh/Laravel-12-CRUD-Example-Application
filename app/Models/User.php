@@ -80,7 +80,7 @@ class User extends Authenticatable
             $save->avatar     = $request->image;
             $save->email      = $request->email;
             $save->join_date  = $todayDate;
-            $save->role_name  = 'admin';
+            $save->role_name  = 'Admin';
             $save->status     = 'Active';
             $save->password   = Hash::make($request->password);
             $save->save();

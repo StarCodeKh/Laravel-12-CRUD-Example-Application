@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use DB;
 
 class DataListingController extends Controller
 {
@@ -10,4 +12,5 @@ class DataListingController extends Controller
     {
         return view('data-listing.listing');
     }
+    
 }
