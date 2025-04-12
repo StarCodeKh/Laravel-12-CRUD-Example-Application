@@ -49,6 +49,38 @@
 @include('data-listing.modal.delete')
 
 @section('script')
-    
+    <script>
+        $(document).ready(function() {
+            const table = $('#userListing').DataTable({
+                lengthMenu: [
+                    [10, 25, 50, 100, 150],
+                    [10, 25, 50, 100, 150]
+                ],
+                buttons: ['pageLength'],
+                pageLength: 10,
+                order: [[5, 'desc']],
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('get-data-user.listing') }}",
+                },
+                columns: [
+                    { data: 'action', orderable: false, searchable: false },
+                    { data: 'no' },
+                    { data: 'name' },
+                    { data: 'user_id' },
+                    { data: 'email' },
+                    { data: 'position' },
+                    { data: 'phone_number' },
+                    { data: 'join_date' },
+                    { data: 'last_login' },
+                    { data: 'role_name' },
+                    { data: 'department' },
+                    { data: 'status' },
+                ]
+            });
+        });
+    </script>
 @endsection
 @endsection
