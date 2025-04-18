@@ -126,6 +126,11 @@ body {
     box-shadow: none !important;
 }
 
+.image-circle {
+    width: 30px; 
+    height: 30px;
+}
+
 /* Extra Small (xs) */
 @media (max-width: 575px) {
     .custom-width {

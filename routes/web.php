@@ -59,6 +59,7 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
             Route::get('listing/page', 'index')->name('listing/page');
             // Route to fetch data for the DataTable
             Route::get('get-data-user/listing', 'getData')->name('get-data-user.listing');
+            Route::post('update-user', 'updateRecord')->name('update-user');
         });
     });
     // ------------------------- Setting ----------------------------//

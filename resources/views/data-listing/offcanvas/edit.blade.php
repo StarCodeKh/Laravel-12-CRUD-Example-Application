@@ -7,65 +7,78 @@
 
 <!-- Offcanvas for Editing User Information -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <!-- Header Section of the Offcanvas -->
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasRightLabel">Edit User Information</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
+
+    <!-- Body Section of the Offcanvas (Form for Editing User Information) -->
     <div class="offcanvas-body">
-        <form id="editUserForm">
+        <form id="editUserForm" action="{{ route('update-user') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <!-- Profile Image Section -->
             <div class="mb-3 text-center">
+                <input type="file" id="e_image_upload" name="profile_image" accept="image/*" class="d-none">
+                <input type="hidden" id="e_hidden_image" name="hidden_image">
                 <div class="d-flex justify-content-center">
-                    <span class="input-group-text p-2 rounded-4">
-                        {{-- <img src="profile.jpg" alt="User Profile" class="rounded-circle" style="width: 50px; height: 50px;"> --}}
-                        <h4 class="fw-bold mb-0">SS</h4>
+                    <span class="input-group-text p-2 rounded-4" id="e_image_upload_trigger" style="cursor: pointer;">
+                        <img id="e_image-circle-preview" src="" alt="User Image" class="rounded-circle d-none" width="60" height="60">
+                        <h4 class="fw-bold mb-0" id="e_image-circle"></h4>
                     </span>
                 </div>
             </div>
+
+            <!-- User Information Fields -->
             <div class="mb-3">
                 <label for="userID" class="form-label">User ID</label>
-                <input type="text" class="form-control" id="userID" name="userID" value="Kh-00001" readonly>
+                <input type="text" class="form-control" id="e_user_id" name="user_id" readonly>
             </div>
             <div class="mb-3">
                 <label for="userName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter full name" value="Soeng Souy" required>
+                <input type="text" class="form-control" id="e_name" name="name" placeholder="Enter full name" required>
             </div>
-
             <div class="mb-3">
                 <label for="userEmail" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="Enter email" value="soengsouy@example.com" required>
+                <input type="email" class="form-control" id="e_email" name="email" placeholder="Enter email" required>
             </div>
-
             <div class="mb-3">
                 <label for="userPhone" class="form-label">Phone Number</label>
-                <input type="tel" class="form-control" id="userPhone" name="userPhone" placeholder="Enter phone number" value="095454545">
+                <input type="tel" class="form-control" id="e_phone_number" name="phone_number" placeholder="Enter phone number">
             </div>
-            
             <div class="mb-3">
                 <label for="position" class="form-label">Position</label>
-                <input type="tel" class="form-control" id="position" name="position" placeholder="Enter position" value="IT">
+                <input type="text" class="form-control" id="e_position" name="position" placeholder="Enter position">
             </div>
             <div class="mb-3">
                 <label for="department" class="form-label">Department</label>
-                <input type="tel" class="form-control" id="department" name="department" placeholder="Enter department" value="IT Department">
+                <input type="text" class="form-control" id="e_department" name="department" placeholder="Enter department">
             </div>
 
+            <!-- User Role Selection -->
             <div class="mb-3">
                 <label for="userRole" class="form-label">User Role</label>
-                <select class="form-select" id="userRole" name="userRole">
-                    <option value="admin">Admin</option>
-                    <option value="editor">Editor</option>
-                    <option value="user">User</option>
+                <select class="form-select" id="e_role_name" name="role_name">
+                    <option value="Admin">Admin</option>
+                    <option value="Editor">Editor</option>
+                    <option value="User">User</option>
                 </select>
             </div>
+
+            <!-- User Status Selection -->
             <div class="mb-3">
-                <label for="userRole" class="form-label">Status</label>
-                <select class="form-select" id="userRole" name="userRole">
+                <label for="userStatus" class="form-label">Status</label>
+                <select class="form-select" id="e_status" name="status">
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Suspended">Suspended</option>
                 </select>
             </div>
         </form>
     </div>
+
+    <!-- Footer Section with Buttons -->
     <div class="offcanvas-footer">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
         <button type="submit" class="btn btn-primary" form="editUserForm">Save Changes</button>
