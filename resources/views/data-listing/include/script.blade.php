@@ -88,6 +88,17 @@
 </script>
 
 <script>
+    $(document).on('click', '.userDelete', function() {
+        const _this = $(this).closest('tr');
+        
+        // Populate the modal with current user data
+        $('#d_user_id').val(_this.find('.user_id').text());
+        $('#d_name').text(_this.find('.name').text());
+        $('#d_image-circle').val(_this.find('.image-circle').data('image-circle'));
+    });
+</script>
+
+<script>
     $(function () {
         $('#e_image_upload_trigger').click(() => $('#e_image_upload').click());
         $('#e_image_upload').change(function () {

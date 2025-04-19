@@ -210,4 +210,45 @@ class DataListingController extends Controller
         }
     }
 
+    public function deleteRecord(Request $request)
+    {
+        // Start the transaction to make it atomic
+        DB::beginTransaction();
+
+        try {
+            // Get the user ID and avatar from the request
+            $userId = $request->user_id;
+            $avatar = $request->avatar;
+
+            // Find the user by ID, throw an exception if not found
+            $user = User::where('user_id', $userId)->firstOrFail();
+
+            // Delete the user's avatar if it's not the default avatar
+            if (!empty($avatar)) {
+                $avatarPath = public_path('assets/images/' . $avatar);
+                if (File::exists($avatarPath)) {
+                    File::delete($avatarPath);
+                }
+            }
+
+            // Delete the user from the database
+            $user->delete();
+
+            // Commit the transaction if everything is fine
+            DB::commit();
+
+            // Redirect back with success message
+            return redirect()->back()->with('success', 'User deleted successfully 🙂');
+        } catch (\Exception $e) {
+            // Rollback the transaction if there is an error
+            DB::rollBack();
+
+            // Log the error for debugging purposes
+            Log::error('Error deleting user: ' . $e->getMessage());
+
+            // Redirect back with error message
+            return redirect()->back()->with('error', 'User deletion failed 😞');
+        }
+    }
+
 }
