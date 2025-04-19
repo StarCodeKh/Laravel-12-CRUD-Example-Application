@@ -53,15 +53,16 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
             Route::get('/page/blank', 'pageBlank')->name('page/blank');
         });
     });
+    
     // ------------------------- Data Listing ----------------------------//
     Route::controller(DataListingController::class)->group(function () {
         Route::middleware('auth')->group(function () {
             Route::get('listing/page', 'index')->name('listing/page');
-            // Route to fetch data for the DataTable
             Route::get('get-data-user/listing', 'getData')->name('get-data-user.listing');
             Route::post('update-user', 'updateRecord')->name('update-user');
         });
     });
+
     // ------------------------- Setting ----------------------------//
     Route::controller(SettingController::class)->group(function () {
         Route::middleware('auth')->group(function () {

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
@@ -93,7 +95,7 @@ class DataListingController extends Controller
                     <button class="btn btn-warning btn-sm userUpdate" data-id="'.$record->id.'" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
                         <i class="bi bi-pencil"></i>
                     </button>
-                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalDeleteUser">
+                    <button class="btn btn-danger btn-sm userDelete" data-bs-toggle="modal" data-bs-target="#modalDeleteUser">
                         <i class="bi bi-trash"></i>
                     </button>
                 </div>';
