@@ -185,8 +185,7 @@ class DataListingController extends Controller
                 $image_name = time() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('assets/images'), $image_name);
             }
-
-            // Prepare the data to update in the database
+            // If no new image is uploaded, keep the existing image name
             $update = [
                 'name'          => $name,
                 'email'         => $email,
@@ -198,23 +197,13 @@ class DataListingController extends Controller
                 'avatar'        => $image_name,  // Save the new or existing image name
             ];
 
-            // Perform the update
             User::where('user_id', $user_id)->update($update);
-
-            // Commit the transaction
             DB::commit();
-
-            // Redirect back with a success message
             return redirect()->back()->with('success', 'User updated successfully :)');
 
         } catch (\Exception $e) {
-            // If an error occurs, rollback the transaction
             DB::rollback();
-
-            // Log the error for debugging purposes
             \Log::error('User update failed', ['error' => $e->getMessage()]);
-
-            // Return a failure message
             return redirect()->back()->with('error', 'User update failed. Please try again.');
         }
     }
