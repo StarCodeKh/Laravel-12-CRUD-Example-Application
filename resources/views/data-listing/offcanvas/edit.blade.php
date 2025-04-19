@@ -1,23 +1,13 @@
-<style>
-    .offcanvas {
-        width: 40% !important;
-        box-shadow: -2px 0 10px rgba(229, 226, 226, 0.387);
-    }
-</style>
-
 <!-- Offcanvas for Editing User Information -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <!-- Header Section of the Offcanvas -->
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasRightLabel">Edit User Information</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
-    <!-- Body Section of the Offcanvas (Form for Editing User Information) -->
     <div class="offcanvas-body">
         <form id="editUserForm" action="{{ route('update-user') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <!-- Profile Image Section -->
             <div class="mb-3 text-center">
                 <input type="file" id="e_image_upload" name="profile_image" accept="image/*" class="d-none">
                 <input type="hidden" id="e_hidden_image" name="hidden_image">
@@ -29,7 +19,6 @@
                 </div>
             </div>
 
-            <!-- User Information Fields -->
             <div class="mb-3">
                 <label for="userID" class="form-label">User ID</label>
                 <input type="text" class="form-control" id="e_user_id" name="user_id" readonly>
@@ -55,7 +44,6 @@
                 <input type="text" class="form-control" id="e_department" name="department" placeholder="Enter department">
             </div>
 
-            <!-- User Role Selection -->
             <div class="mb-3">
                 <label for="userRole" class="form-label">User Role</label>
                 <select class="form-select" id="e_role_name" name="role_name">
@@ -65,7 +53,6 @@
                 </select>
             </div>
 
-            <!-- User Status Selection -->
             <div class="mb-3">
                 <label for="userStatus" class="form-label">Status</label>
                 <select class="form-select" id="e_status" name="status">
@@ -78,7 +65,6 @@
         </form>
     </div>
 
-    <!-- Footer Section with Buttons -->
     <div class="offcanvas-footer">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
         <button type="submit" class="btn btn-primary" form="editUserForm">Save Changes</button>

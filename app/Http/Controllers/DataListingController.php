@@ -87,7 +87,7 @@ class DataListingController extends Controller
 
             $action = '
                 <div class="d-flex gap-2">
-                    <button class="btn btn-info btn-sm" data-id="'.$record->id.'" data-bs-toggle="offcanvas" data-bs-target="#viewUser" aria-controls="viewUser">
+                    <button class="btn btn-info btn-sm userView" data-id="'.$record->id.'" data-bs-toggle="offcanvas" data-bs-target="#viewUser" aria-controls="viewUser">
                         <i class="bi bi-eye"></i>
                     </button>
                     <button class="btn btn-warning btn-sm userUpdate" data-id="'.$record->id.'" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">

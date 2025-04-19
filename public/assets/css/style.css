@@ -14,6 +14,10 @@ body {
 .dropdown-menu-custome {
     position: absolute !important;
 }
+.offcanvas {
+    width: 40% !important;
+    box-shadow: -2px 0 10px rgba(229, 226, 226, 0.387);
+}
 
 .modal-content {
     background-color: #f8f9fa;
