@@ -60,13 +60,23 @@
                         </li>
                         <!-- Profile dropdown -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link p-0 d-flex text-white align-items-center justify-content-center rounded-3 icon-circle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUYrF904TxxOkQsdkq486-C2rMZ0f4oAZa1g&s" class="rounded-2" alt="Profile" width="26" height="26">
-                            </a>
+                            @if(!empty(Auth::user()->avatar))
+                                <a class="nav-link p-0 d-flex text-white align-items-center justify-content-center rounded-3 icon-circle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="{{ URL::to('/assets/images/'.Auth::user()->avatar) }}" class="rounded-2" alt="Profile" width="26" height="26">
+                                </a>
+                            @else
+                                <a class="nav-link p-0 d-flex text-white align-items-center justify-content-center rounded-3 icon-circle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ $initials }}
+                                </a>
+                            @endif
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                                 <div class="profile-card">
                                     <div class="d-flex align-items-center mb-3">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUYrF904TxxOkQsdkq486-C2rMZ0f4oAZa1g&s" class="rounded" width="48" height="48" alt="Avatar">
+                                        @if(!empty(Auth::user()->avatar))
+                                            <img src="{{ URL::to('/assets/images/'.Auth::user()->avatar) }}" class="rounded" width="48" height="48" alt="Avatar">
+                                        @else
+                                            <span class="d-flex align-items-center justify-content-center bg-secondary text-white rounded-2 fw-bold image-profile">{{ $initials }}</span>
+                                        @endif
                                         <div class="ms-3">
                                             <h6 class="mb-0 fw-bold">{{ Auth::user()->name }} <span class="pro-badge">Pro</span></h6>
                                             <small class="text-muted">{{ Auth::user()->email }}</small>
