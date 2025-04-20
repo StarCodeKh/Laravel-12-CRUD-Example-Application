@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
@@ -82,23 +83,43 @@ class DataListingController extends Controller
             'Suspended' => 'bg-warning-subtle text-warning',
         ];
 
+        // Get the current user's role
+        $userRole = Auth::user()->role_name;
+        // Get the permissions based on the user's role
+        $permissions = config('roles')[$userRole] ?? [];
+
         $data_arr = [];
 
         foreach ($records as $key => $record) {
             $last_login = Carbon::parse($record->last_login)->diffForHumans();
 
-            $action = '
-                <div class="d-flex gap-2">
+            $action = '<div class="d-flex gap-2">';
+
+            // View permission: All roles can view
+            if (in_array('view', $permissions)) {
+                $action .= '
                     <button class="btn btn-info btn-sm userView" data-id="'.$record->id.'" data-bs-toggle="offcanvas" data-bs-target="#viewUser" aria-controls="viewUser">
                         <i class="bi bi-eye"></i>
-                    </button>
+                    </button>';
+            }
+
+            // Edit permission: Admin & Editor roles can edit
+            if (in_array('edit', $permissions)) {
+                $action .= '
                     <button class="btn btn-warning btn-sm userUpdate" data-id="'.$record->id.'" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
                         <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-danger btn-sm userDelete" data-bs-toggle="modal" data-bs-target="#modalDeleteUser">
+                    </button>';
+            }
+
+            // Delete permission: Only Admin can delete
+            if (in_array('delete', $permissions)) {
+                $action .= '
+                    <button class="btn btn-danger btn-sm userDelete" data-id="'.$record->id.'" data-bs-toggle="modal" data-bs-target="#modalDeleteUser">
                         <i class="bi bi-trash"></i>
-                    </button>
-                </div>';
+                    </button>';
+            }
+
+            $action .= '</div>';
 
             $fullName = $record->name;
             $parts = explode(' ', $fullName);
