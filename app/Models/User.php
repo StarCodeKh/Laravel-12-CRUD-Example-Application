@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -67,12 +68,18 @@ class User extends Authenticatable
     /** Insert New Users */
     public function saveNewuser(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name'      => 'required|string|max:255',
-            'email'     => 'required|string|email|max:255|unique:users',
+            'email'     => 'required|string|email|max:255|unique:users,email',
             'password'  => 'required|string|min:8|confirmed',
+        ], [
+            'email.unique' => 'This email is already registered. Please use another.',
         ]);
-        
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Please fix the errors below.');
+        }
+
         try {
             $todayDate = Carbon::now()->toDayDateTimeString();
             $save             = new User;
@@ -90,4 +97,5 @@ class User extends Authenticatable
             return redirect()->back()->with('error', 'Failed to Create Account. Please try again.');
         }
     }
+
 }
