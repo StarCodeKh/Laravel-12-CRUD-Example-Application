@@ -33,14 +33,13 @@ Route::group(['namespace' => 'App\Http\Controllers\Auth'],function()
 
     // ----------------------------- Forget Password --------------------------//
     Route::controller(ForgotPasswordController::class)->group(function () {
-        Route::get('forget-password', 'getEmail')->name('forget-password');
-        Route::post('forget-password', 'postEmail')->name('forget-password');    
+        Route::post('forget-password', 'sendResetLinkEmail')->name('forget-password');    
     });
 
     // ---------------------------- Reset Password ----------------------------//
     Route::controller(ResetPasswordController::class)->group(function () {
         Route::get('reset-password/{token}', 'getPassword');
-        Route::post('reset-password', 'updatePassword');    
+        Route::post('reset-password', 'updatePassword')->name('reset-password');    
     });
 });
 

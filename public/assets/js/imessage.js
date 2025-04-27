@@ -62,8 +62,28 @@ class Message {
         this.addIcon(type);
         this.toastInstance.show();
 
+        // Hover behavior
+        let timeoutId;
+        const element = this.toastElement;
+
+        const hideToast = () => {
+            this.hide();
+            element.removeEventListener('mouseenter', pauseTimer);
+            element.removeEventListener('mouseleave', resumeTimer);
+        };
+
+        const pauseTimer = () => {
+            clearTimeout(timeoutId);
+        };
+
+        const resumeTimer = () => {
+            timeoutId = setTimeout(hideToast, timeout);
+        };
+
         if (timeout) {
-            setTimeout(() => this.hide(), timeout);
+            timeoutId = setTimeout(hideToast, timeout);
+            element.addEventListener('mouseenter', pauseTimer);
+            element.addEventListener('mouseleave', resumeTimer);
         }
     }
 
