@@ -46,7 +46,7 @@ class LoginController extends Controller
             return redirect('login')->with('error', 'Wrong Username or Password');
         } catch (\Exception $e) {
             \Log::info($e);
-            return redirect()->back()->with('error', 'Login failed. Please try again.');;
+            return redirect()->back()->with('error', 'Login failed. Please try again.');
         }
     }
 

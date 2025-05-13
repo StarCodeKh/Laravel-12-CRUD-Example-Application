@@ -1,9 +1,27 @@
 <?php
 
-/** for side bar menu active */
-function set_active($route) {
-    if (is_array($route )){
-        return in_array(Request::path(), $route) ? 'active' : '';
+function matches($route) {
+    $current = Request::path();
+    return Str::is($route, $current);
+}
+
+function set_active($routes) {
+    foreach ((array)$routes as $route) {
+        if (matches($route)) return 'active';
     }
-    return Request::path() == $route ? 'active' : '';
+    return '';
+}
+
+function set_show($routes) {
+    foreach ((array)$routes as $route) {
+        if (matches($route)) return 'show';
+    }
+    return '';
+}
+
+function set_expanded($routes) {
+    foreach ((array)$routes as $route) {
+        if (matches($route)) return 'true';
+    }
+    return 'false';
 }

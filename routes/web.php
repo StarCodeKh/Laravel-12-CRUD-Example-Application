@@ -69,4 +69,11 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
             Route::get('setting/page', 'index')->name('setting/page');
         });
     });
+
+     // ------------------------- Setting ----------------------------//
+    Route::controller(FormController::class)->group(function () {
+        Route::middleware('auth')->group(function () {
+            Route::get('form/upload/page', 'index')->name('form/upload/page');
+        });
+    });
 });

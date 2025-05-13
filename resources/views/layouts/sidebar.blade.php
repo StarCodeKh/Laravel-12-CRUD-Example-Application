@@ -25,6 +25,22 @@
             <i class="fas fa-chart-bar me-3"></i>
             <span class="hide-on-collapse">Data Listing</span>
         </a>
+
+        <a href="#formSubmenu" data-bs-toggle="collapse" aria-expanded="{{ set_expanded(['form/upload/page']) }}" class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center {{ set_active(['form/upload/page']) }}">
+            <div>
+                <i class="fa fa-file-text me-3"></i>
+                <span class="hide-on-collapse">Form</span>
+            </div>
+            <i class="fa fa-caret-right toggle-caret"></i>
+        </a>
+
+        <div class="collapse ps-4 {{ set_show(['form/upload/page']) }}" id="formSubmenu">
+            <a href="{{ route('form/upload/page') }}"
+            class="sidebar-link text-decoration-none p-2 d-block {{ set_active(['form/upload/page']) }}">
+                <i class="fa fa-file-upload me-2"></i> Upload File
+            </a>
+        </div>
+
         <a href="{{ route('page/blank') }}" class="sidebar-link text-decoration-none p-3 {{set_active(['page/blank'])}}">
             <i class="fa-solid fa-pager me-3"></i>
             <span class="hide-on-collapse">Page Blank</span>
@@ -140,3 +156,29 @@
     </div>
 </div>
 
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        const $submenu = $('#formSubmenu');
+        const $toggleLink = $('a[href="#formSubmenu"]');
+        const $caret = $toggleLink.find('.toggle-caret');
+
+        // On show: change caret direction
+        $submenu.on('show.bs.collapse', function () {
+            $caret.removeClass('fa-caret-right').addClass('fa-caret-down');
+        });
+
+        // On hide: revert caret
+        $submenu.on('hide.bs.collapse', function () {
+            $caret.removeClass('fa-caret-down').addClass('fa-caret-right');
+        });
+
+        if ($submenu.hasClass('show')) {
+            $caret.removeClass('fa-caret-right').addClass('fa-caret-down');
+        } else {
+            $caret.removeClass('fa-caret-down').addClass('fa-caret-right');
+        }
+    });
+</script>
