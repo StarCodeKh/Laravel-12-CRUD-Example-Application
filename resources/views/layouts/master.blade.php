@@ -14,7 +14,7 @@
     <!-- Style Custome -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/sidebar.css') }}">
-    @yield('styles')
+    @yield('style')
 </head>
 <body>
     <div class="d-flex flex-column min-vh-100">

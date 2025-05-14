@@ -70,10 +70,12 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         });
     });
 
-     // ------------------------- Setting ----------------------------//
+    // ------------------------- Form Upload ----------------------------//
     Route::controller(FormController::class)->group(function () {
         Route::middleware('auth')->group(function () {
             Route::get('form/upload/page', 'index')->name('form/upload/page');
+            Route::post('form/upload/save', 'storeFileUpload')->name('form/upload/save');
         });
     });
+
 });
