@@ -16,7 +16,7 @@
             },
             columns: [
                 { data: 'action', orderable: false, searchable: false },
-                { data: 'id' },
+                { data: 'id', orderable: false, searchable: false},
                 { data: 'name' },
                 { data: 'user_id' },
                 { data: 'email' },

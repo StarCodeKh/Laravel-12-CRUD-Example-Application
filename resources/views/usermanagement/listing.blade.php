@@ -35,12 +35,12 @@
     </div>
 </div>
 <!-- offcanvas -->
-@include('data-listing.offcanvas.edit')
-@include('data-listing.offcanvas.view')
+@include('usermanagement.offcanvas.edit')
+@include('usermanagement.offcanvas.view')
 <!-- Modal -->
-@include('data-listing.modal.delete')
+@include('usermanagement.modal.delete')
 
 @section('script')
-    @include('data-listing.include.script')
+    @include('usermanagement.include.script')
 @endsection
 @endsection

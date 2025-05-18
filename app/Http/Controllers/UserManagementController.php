@@ -14,7 +14,7 @@ class UserManagementController extends Controller
 {
     function index()
     {
-        return view('data-listing.listing');
+        return view('usermanagement.listing');
     }
 
     // Fetch data for the DataTable
