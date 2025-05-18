@@ -26,7 +26,7 @@
             <span class="hide-on-collapse">Data Listing</span>
         </a>
 
-        <a href="#formSubmenu" data-bs-toggle="collapse" aria-expanded="{{ set_expanded(['form/upload/page']) }}" class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center {{ set_active(['form/upload/page']) }}">
+        <a href="#formSubmenu" data-bs-toggle="collapse" aria-expanded="{{ set_expanded(['form/upload/page','form/upload/listing']) }}" class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center {{ set_active(['form/upload/page','form/upload/listing']) }}">
             <div>
                 <i class="fa fa-file-text me-3"></i>
                 <span class="hide-on-collapse">Form</span>
@@ -34,10 +34,12 @@
             <i class="fa fa-caret-right toggle-caret"></i>
         </a>
 
-        <div class="collapse ps-4 {{ set_show(['form/upload/page']) }}" id="formSubmenu">
-            <a href="{{ route('form/upload/page') }}"
-            class="sidebar-link text-decoration-none p-2 d-block {{ set_active(['form/upload/page']) }}">
-                <i class="fa fa-file-upload me-2"></i> Upload File
+        <div class="collapse ps-4 {{ set_show(['form/upload/page','form/upload/listing']) }}" id="formSubmenu">
+            <a href="{{ route('form/upload/page') }}" class="sidebar-link text-decoration-none p-2 d-block {{ set_active(['form/upload/page']) }}">
+                <i class="fa fa-file-upload me-"2></i> Upload File
+            </a>
+             <a href="{{ route('form/upload/listing') }}" class="sidebar-link text-decoration-none p-2 d-block {{ set_active(['form/upload/listing']) }}">
+                <i class="fa fa-list-ol me-2"></i> Listing Upload File
             </a>
         </div>
 

@@ -39,7 +39,7 @@ class DataListingController extends Controller
         $searchValue = $search['value'] ?? '';
 
         // Base query for users
-        $users = DB::table('users');
+        $users = User::query();
 
         // Count total records without filtering
         $totalRecords = $users->count();
