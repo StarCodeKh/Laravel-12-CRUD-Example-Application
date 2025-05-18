@@ -42,6 +42,7 @@
     <script src="{{ asset('assets/js/imessage.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
     <script src="{{ asset('assets/js/language-switch.js') }}"></script>
+    <script src="{{ asset('assets/js/sidebar-toggle.js') }}"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -58,29 +59,6 @@
                 }
             });
         });
-    </script>
-
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            const logoText = document.querySelector('.logo-text');
-            const logoTextSK = document.querySelector('.logo-text.sk');
-
-            sidebar.classList.toggle('collapsed');
-            logoText.style.display = 'none';
-
-            if (sidebar.classList.contains('collapsed')) {
-                setTimeout(function() {
-                    logoText.style.display = 'none';
-                    logoTextSK.style.display = 'block';
-                }, 200);
-            } else {
-                setTimeout(function() {
-                    logoText.style.display = 'block';
-                    logoTextSK.style.display = 'none';
-                }, 200);
-            }
-        }
     </script>
 
     @yield('script')

@@ -9,19 +9,27 @@
 
 <!-- Sidebar (25%) -->
 <nav class="sidebar d-flex flex-column flex-shrink-0 position-fixed">
-    <button class="toggle-btn" onclick="toggleSidebar()">
+    {{-- Sidebar Toggle Button --}}
+    <button class="toggle-btn">
         <i class="fas fa-chevron-left"></i>
     </button>
+
+    {{-- User Info --}}
     <div class="p-4">
         <h4 class="logo-text fw-bold mb-0">{{ Auth::user()->name }}</h4>
         <h4 class="logo-text sk fw-bold mb-0">{{ $initials }}</h4>
     </div>
+
+    {{-- Navigation Links --}}
     <div class="nav flex-column">
-        <a href="{{ route('home') }}" class="sidebar-link text-decoration-none p-3 {{set_active(['home'])}}">
+
+        {{-- Dashboard --}}
+        <a href="{{ route('home') }}" class="sidebar-link text-decoration-none p-3 {{ set_active(['home']) }}">
             <i class="fas fa-home me-3"></i>
             <span class="hide-on-collapse">Dashboard</span>
         </a>
 
+        {{-- Admin CRUD Forms --}}
         <a href="#adminCrudSubmenu" data-bs-toggle="collapse"
             aria-expanded="{{ set_expanded(['user/data/listing']) }}"
             class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center {{ set_active(['user/data/listing']) }}">
@@ -31,13 +39,13 @@
             </div>
             <i class="fa fa-caret-right toggle-caret"></i>
         </a>
-
         <div class="collapse ps-4 {{ set_show(['user/data/listing']) }}" id="adminCrudSubmenu">
             <a href="{{ route('user/data/listing') }}" class="sidebar-link text-decoration-none p-2 d-block {{ set_active(['user/data/listing']) }}">
                 <i class="fa fa-list-ol me-2"></i> Users Listing
             </a>
         </div>
 
+        {{-- Upload Forms --}}
         <a href="#uploadFormsSubmenu" data-bs-toggle="collapse"
             aria-expanded="{{ set_expanded(['form/upload/page','form/upload/listing']) }}"
             class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center {{ set_active(['form/upload/page','form/upload/listing']) }}">
@@ -47,7 +55,6 @@
             </div>
             <i class="fa fa-caret-right toggle-caret"></i>
         </a>
-
         <div class="collapse ps-4 {{ set_show(['form/upload/page','form/upload/listing']) }}" id="uploadFormsSubmenu">
             <a href="{{ route('form/upload/page') }}" class="sidebar-link text-decoration-none p-2 d-block {{ set_active(['form/upload/page']) }}">
                 <i class="fa fa-file-upload me-2"></i> Upload File
@@ -57,35 +64,38 @@
             </a>
         </div>
 
-        <a href="#wizardFormsSubmenu" data-bs-toggle="collapse" class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center">
+        {{-- Wizard Forms --}}
+        <a href="#wizardFormsSubmenu" data-bs-toggle="collapse"
+            class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center">
             <div>
                 <i class="fa fa-magic me-3"></i>
                 <span class="hide-on-collapse">Wizard Forms</span>
             </div>
             <i class="fa fa-caret-right toggle-caret"></i>
         </a>
-
         <div class="collapse ps-4" id="wizardFormsSubmenu">
             <a href="#" class="sidebar-link text-decoration-none p-2 d-block">
                 <i class="fa fa-fast-forward me-2"></i> Multi-Step
             </a>
         </div>
 
-        <a href="#authFormsSubmenu" data-bs-toggle="collapse" class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center">
+        {{-- Authentication Forms --}}
+        <a href="#authFormsSubmenu" data-bs-toggle="collapse"
+            class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center">
             <div>
                 <i class="fa fa-shield me-3"></i>
                 <span class="hide-on-collapse">Authentication Forms</span>
             </div>
             <i class="fa fa-caret-right toggle-caret"></i>
         </a>
-
         <div class="collapse ps-4" id="authFormsSubmenu">
             <a href="#" class="sidebar-link text-decoration-none p-2 d-block">
                 <i class="fa fa-sign-in me-2"></i> Login
             </a>
         </div>
 
-        <a href="{{ route('page/blank') }}" class="sidebar-link text-decoration-none p-3 {{set_active(['page/blank'])}}">
+        {{-- Blank Page --}}
+        <a href="{{ route('page/blank') }}" class="sidebar-link text-decoration-none p-3 {{ set_active(['page/blank']) }}">
             <i class="fa-solid fa-pager me-3"></i>
             <span class="hide-on-collapse">Page Blank</span>
         </a>
@@ -199,35 +209,3 @@
         </div>
     </div>
 </div>
-
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        // For each toggle link with collapse target
-        $('a[data-bs-toggle="collapse"]').each(function () {
-            const $toggleLink = $(this);
-            const targetId = $toggleLink.attr('href'); // e.g., "#adminCrudSubmenu"
-            const $submenu = $(targetId);
-            const $caret = $toggleLink.find('.toggle-caret');
-
-            // Set initial caret direction based on submenu visibility
-            if ($submenu.hasClass('show')) {
-                $caret.removeClass('fa-caret-right').addClass('fa-caret-down');
-            } else {
-                $caret.removeClass('fa-caret-down').addClass('fa-caret-right');
-            }
-
-            // Listen for submenu toggle events
-            $submenu.on('show.bs.collapse', function () {
-                $caret.removeClass('fa-caret-right').addClass('fa-caret-down');
-            });
-
-            $submenu.on('hide.bs.collapse', function () {
-                $caret.removeClass('fa-caret-down').addClass('fa-caret-right');
-            });
-        });
-    });
-</script>
-
