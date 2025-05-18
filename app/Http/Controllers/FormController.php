@@ -22,30 +22,24 @@ class FormController extends Controller
     public function storeFileUpload(Request $request)
     {
         $request->validate([
-            'fileupload.*' => 'required|file|mimes:jpg,jpeg,png,pdf,docx|max:2048'
+            'fileupload'   => 'required|array',
+            'fileupload.*' => 'file|mimes:jpg,jpeg,png,pdf,docx|max:2048',
         ]);
 
-        try {
-            if ($request->hasFile('fileupload')) {
-                foreach ($request->file('fileupload') as $file) {
-                    $filename = time() . '_' . $file->getClientOriginalName();
-                    $path = $file->storeAs('uploads', $filename, 'public');
+        foreach ($request->file('fileupload') as $file) {
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('uploads', $filename, 'public');
 
-                    Upload::create([
-                        'filename'     => $filename,
-                        'upload_name'  => Auth::user()->name,
-                        'uploaded_at'  => Carbon::now()
-                    ]);
-                }
-            }
-
-            return back()->with('success', 'Files uploaded and saved successfully.');
-        } catch (Exception $e) {
-            Log::error('File upload failed: ' . $e->getMessage());
-            return back()->with('error', 'Something went wrong while uploading the files.');
+            Upload::create([
+                'filename'     => $filename,
+                'upload_name'  => Auth::user()->name,
+                'uploaded_at'  => Carbon::now(),
+            ]);
         }
-    }
 
+        return back()->with('success', 'Files uploaded successfully.');
+    }
+    
     // Show the file listing view
     public function showFiles()
     {
