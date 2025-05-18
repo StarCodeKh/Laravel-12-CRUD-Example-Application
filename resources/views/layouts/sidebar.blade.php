@@ -29,7 +29,7 @@
         <a href="#formSubmenu" data-bs-toggle="collapse" aria-expanded="{{ set_expanded(['form/upload/page','form/upload/listing']) }}" class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center {{ set_active(['form/upload/page','form/upload/listing']) }}">
             <div>
                 <i class="fa fa-file-text me-3"></i>
-                <span class="hide-on-collapse">Form</span>
+                <span class="hide-on-collapse">Form Upload</span>
             </div>
             <i class="fa fa-caret-right toggle-caret"></i>
         </a>
