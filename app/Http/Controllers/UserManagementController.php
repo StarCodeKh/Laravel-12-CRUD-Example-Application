@@ -10,7 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use DB;
 
-class DataListingController extends Controller
+class UserManagementController extends Controller
 {
     function index()
     {

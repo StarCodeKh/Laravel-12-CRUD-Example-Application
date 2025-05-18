@@ -54,9 +54,9 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
     });
 
     // ------------------------- Data Listing ----------------------------//
-    Route::controller(DataListingController::class)->group(function () {
+    Route::controller(UserManagementController::class)->group(function () {
         Route::middleware('auth')->group(function () {
-            Route::get('listing/page', 'index')->name('listing/page');
+            Route::get('user/data/listing', 'index')->name('user/data/listing');
             Route::get('get-data-user/listing', 'getData')->name('get-data-user.listing');
             Route::post('update-user', 'updateRecord')->name('update-user');
             Route::post('delete-user', 'deleteRecord')->name('delete-user');
