@@ -10,12 +10,12 @@ use App\Models\Upload;
 use Carbon\Carbon;
 use Exception;
 
-class FormController extends Controller
+class UploadFormController extends Controller
 {
     // Display the upload form
     public function index()
     {
-        return view('form.upload');
+        return view('uploadform.upload');
     }
 
     // Handle file upload
@@ -44,7 +44,7 @@ class FormController extends Controller
     public function showFiles()
     {
         $uploads = Upload::all();
-        return view('form.fileslisting', compact('uploads'));
+        return view('uploadform.fileslisting', compact('uploads'));
     }
     
     public function getData(Request $request)
