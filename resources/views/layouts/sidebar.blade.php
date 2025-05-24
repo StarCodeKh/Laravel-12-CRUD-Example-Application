@@ -9,27 +9,22 @@
 
 <!-- Sidebar (25%) -->
 <nav class="sidebar d-flex flex-column flex-shrink-0 position-fixed">
-    {{-- Sidebar Toggle Button --}}
     <button class="toggle-btn">
         <i class="fas fa-chevron-left"></i>
     </button>
 
-    {{-- User Info --}}
     <div class="p-4">
         <h4 class="logo-text fw-bold mb-0">{{ Auth::user()->name }}</h4>
         <h4 class="logo-text sk fw-bold mb-0">{{ $initials }}</h4>
     </div>
 
-    {{-- Navigation Links --}}
     <div class="nav flex-column">
 
-        {{-- Dashboard --}}
         <a href="{{ route('home') }}" class="sidebar-link text-decoration-none p-3 {{ set_active(['home']) }}">
             <i class="fas fa-home me-3"></i>
             <span class="hide-on-collapse">Dashboard</span>
         </a>
 
-        {{-- Admin CRUD Forms --}}
         <a href="#adminCrudSubmenu" data-bs-toggle="collapse"
             aria-expanded="{{ set_expanded(['user/data/listing']) }}"
             class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center {{ set_active(['user/data/listing']) }}">
@@ -41,11 +36,10 @@
         </a>
         <div class="collapse ps-4 {{ set_show(['user/data/listing']) }}" id="adminCrudSubmenu">
             <a href="{{ route('user/data/listing') }}" class="sidebar-link text-decoration-none p-2 d-block {{ set_active(['user/data/listing']) }}">
-                <i class="fa fa-list-ol me-2"></i> Users Listing
+                Users Listing
             </a>
         </div>
 
-        {{-- Upload Forms --}}
         <a href="#uploadFormsSubmenu" data-bs-toggle="collapse"
             aria-expanded="{{ set_expanded(['form/upload/page','form/upload/listing']) }}"
             class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center {{ set_active(['form/upload/page','form/upload/listing']) }}">
@@ -57,29 +51,30 @@
         </a>
         <div class="collapse ps-4 {{ set_show(['form/upload/page','form/upload/listing']) }}" id="uploadFormsSubmenu">
             <a href="{{ route('form/upload/page') }}" class="sidebar-link text-decoration-none p-2 d-block {{ set_active(['form/upload/page']) }}">
-                <i class="fa fa-file-upload me-2"></i> Upload File
+                Upload File
             </a>
             <a href="{{ route('form/upload/listing') }}" class="sidebar-link text-decoration-none p-2 d-block {{ set_active(['form/upload/listing']) }}">
-                <i class="fa fa-list-ol me-2"></i> Listing Upload File
+                Listing Upload File
             </a>
         </div>
 
-        {{-- Wizard Forms --}}
         <a href="#wizardFormsSubmenu" data-bs-toggle="collapse"
             class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center">
             <div>
-                <i class="fa fa-magic me-3"></i>
+                <i class="fa fa-file-text me-3"></i>
                 <span class="hide-on-collapse">Wizard Forms</span>
             </div>
             <i class="fa fa-caret-right toggle-caret"></i>
         </a>
         <div class="collapse ps-4" id="wizardFormsSubmenu">
             <a href="#" class="sidebar-link text-decoration-none p-2 d-block">
-                <i class="fa fa-fast-forward me-2"></i> Multi-Step
+                Multi-Step
+            </a>
+            <a href="#" class="sidebar-link text-decoration-none p-2 d-block">
+                Pagination
             </a>
         </div>
 
-        {{-- Authentication Forms --}}
         <a href="#authFormsSubmenu" data-bs-toggle="collapse"
             class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center">
             <div>
@@ -90,11 +85,10 @@
         </a>
         <div class="collapse ps-4" id="authFormsSubmenu">
             <a href="#" class="sidebar-link text-decoration-none p-2 d-block">
-                <i class="fa fa-sign-in me-2"></i> Login
+                Login
             </a>
         </div>
 
-        {{-- Blank Page --}}
         <a href="{{ route('page/blank') }}" class="sidebar-link text-decoration-none p-3 {{ set_active(['page/blank']) }}">
             <i class="fa-solid fa-pager me-3"></i>
             <span class="hide-on-collapse">Page Blank</span>
