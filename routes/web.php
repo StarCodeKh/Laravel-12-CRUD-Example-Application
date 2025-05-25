@@ -81,7 +81,6 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
             Route::post('delete-file', 'destroy')->name('delete-file');
         });
     });
-
     // ------------------------- Wizard Form ----------------------------//
     Route::controller(WizardFormController::class)->group(function () {
         Route::middleware('auth')->group(function () {
@@ -89,5 +88,4 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
             Route::get('form/pagination/form/get-data/listing', 'getData')->name('form/pagination/form/get-data/listing');
         });
     });
-
 });

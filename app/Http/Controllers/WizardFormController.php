@@ -21,7 +21,7 @@ class WizardFormController extends Controller
         $sortDir = $request->input('sort_dir', 'asc');
 
         // Define database columns and their display labels
-        $columns = ['id', 'user_id', 'name', 'email', 'position', 'department', 'status','created_at'];
+        $columns = ['id', 'user_id', 'name', 'email', 'position', 'department', 'status','created_at', 'updated_at'];
         $columnLabels = [
             'id'         => 'ID',
             'user_id'    => 'User ID',
@@ -30,7 +30,8 @@ class WizardFormController extends Controller
             'position'   => 'Position',
             'department' => 'Department',
             'status'     => 'Status',
-            'created_at'     => 'Created At',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
 
         // Start the base query
