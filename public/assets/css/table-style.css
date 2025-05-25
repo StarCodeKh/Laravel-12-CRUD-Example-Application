@@ -23,8 +23,50 @@
     margin-right: 2px !important;
 }
 
+.sortable {
+    cursor: pointer;
+    position: relative;
+}
+
+.sortable::after {
+    content: ' ⇅';
+    font-size: 0.8em;
+    color: #888;
+}
+
+.sortable.sorted-asc::after {
+    content: ' ↑';
+}
+
+.sortable.sorted-desc::after {
+    content: ' ↓';
+}
+
 .table {
     --bs-table-border-color: #63636363 !important;
+}
+
+#tableScrollWrapper {
+    overflow-x: auto;
+}
+
+#tableScrollWrapper table {
+    min-width: 1000px;
+}
+
+#tableScrollWrapper th,
+#tableScrollWrapper td {
+    white-space: nowrap;
+}
+
+/* Make the first column (Action) sticky */
+#tableHead th:first-child,
+#tableBody td:first-child {
+    position: sticky;
+    left: 0;
+    background: #fff; /* Match your design */
+    z-index: 1;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .pagination {

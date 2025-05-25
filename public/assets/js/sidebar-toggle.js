@@ -37,18 +37,11 @@ $(function () {
         const $link = $(this);
         const targetId = $link.attr('href');
         const $submenu = $(targetId);
-        const $caret = $link.find('.toggle-caret');
-
-        // Initial caret state
-        $caret.toggleClass('fa-caret-down', $submenu.hasClass('show'));
-        $caret.toggleClass('fa-caret-right', !$submenu.hasClass('show'));
 
         // Update on show/hide
         $submenu.on('show.bs.collapse', function () {
-            $caret.removeClass('fa-caret-right').addClass('fa-caret-down');
             $link.attr('aria-expanded', 'true');
         }).on('hide.bs.collapse', function () {
-            $caret.removeClass('fa-caret-down').addClass('fa-caret-right');
             $link.attr('aria-expanded', 'false');
         });
 

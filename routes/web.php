@@ -76,9 +76,17 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
             Route::get('form/upload/page', 'index')->name('form/upload/page');
             Route::post('form/upload/save', 'storeFileUpload')->name('form/upload/save');
             Route::get('form/upload/listing', 'showFiles')->name('form/upload/listing');
-            Route::get('form/file/listing', 'getData')->name('get-data-file.listing');    // DataTables JSON
-            Route::get('/download/{filename}', 'download')->name('file.download');        // Download a file
-            Route::post('delete-file', 'destroy')->name('delete-file');                   // Delete a file
+            Route::get('form/file/listing', 'getData')->name('get-data-file.listing');
+            Route::get('/download/{filename}', 'download')->name('file.download');
+            Route::post('delete-file', 'destroy')->name('delete-file');
+        });
+    });
+
+    // ------------------------- Wizard Form ----------------------------//
+    Route::controller(WizardFormController::class)->group(function () {
+        Route::middleware('auth')->group(function () {
+            Route::get('form/pagination/page', 'index')->name('form/pagination/page');
+            Route::get('form/pagination/form/get-data/listing', 'getData')->name('form/pagination/form/get-data/listing');
         });
     });
 

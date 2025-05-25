@@ -32,7 +32,7 @@
                 <i class="fa fa-lock me-3"></i>
                 <span class="hide-on-collapse">Admin CRUD Forms</span>
             </div>
-            <i class="fa fa-caret-right toggle-caret"></i>
+            <i class="fa fa-chevron-right toggle-caret"></i>
         </a>
         <div class="collapse ps-4 {{ set_show(['user/data/listing']) }}" id="adminCrudSubmenu">
             <a href="{{ route('user/data/listing') }}" class="sidebar-link text-decoration-none p-2 d-block {{ set_active(['user/data/listing']) }}">
@@ -47,7 +47,7 @@
                 <i class="fa fa-upload me-3"></i>
                 <span class="hide-on-collapse">Upload Forms</span>
             </div>
-            <i class="fa fa-caret-right toggle-caret"></i>
+            <i class="fa fa-chevron-right toggle-caret"></i>
         </a>
         <div class="collapse ps-4 {{ set_show(['form/upload/page','form/upload/listing']) }}" id="uploadFormsSubmenu">
             <a href="{{ route('form/upload/page') }}" class="sidebar-link text-decoration-none p-2 d-block {{ set_active(['form/upload/page']) }}">
@@ -59,18 +59,19 @@
         </div>
 
         <a href="#wizardFormsSubmenu" data-bs-toggle="collapse"
-            class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center">
+            aria-expanded="{{ set_expanded(['form/pagination/page']) }}"
+            class="sidebar-link text-decoration-none p-3 d-flex justify-content-between align-items-center {{ set_active(['form/pagination/page']) }}">
             <div>
                 <i class="fa fa-file-text me-3"></i>
                 <span class="hide-on-collapse">Wizard Forms</span>
             </div>
-            <i class="fa fa-caret-right toggle-caret"></i>
+            <i class="fa fa-chevron-right toggle-caret"></i>
         </a>
-        <div class="collapse ps-4" id="wizardFormsSubmenu">
+        <div class="collapse ps-4 {{ set_show(['form/pagination/page']) }}" id="wizardFormsSubmenu">
             <a href="#" class="sidebar-link text-decoration-none p-2 d-block">
                 Multi-Step
             </a>
-            <a href="#" class="sidebar-link text-decoration-none p-2 d-block">
+            <a href="{{ route('form/pagination/page') }}" class="sidebar-link text-decoration-none p-2 d-block {{ set_active(['form/pagination/page']) }}">
                 Pagination
             </a>
         </div>
@@ -81,7 +82,7 @@
                 <i class="fa fa-shield me-3"></i>
                 <span class="hide-on-collapse">Authentication Forms</span>
             </div>
-            <i class="fa fa-caret-right toggle-caret"></i>
+            <i class="fa fa-chevron-right toggle-caret"></i>
         </a>
         <div class="collapse ps-4" id="authFormsSubmenu">
             <a href="#" class="sidebar-link text-decoration-none p-2 d-block">
