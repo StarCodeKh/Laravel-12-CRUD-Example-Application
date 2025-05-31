@@ -59,14 +59,24 @@
     white-space: nowrap;
 }
 
-/* Make the first column (Action) sticky */
-#tableHead th:first-child,
-#tableBody td:first-child {
+.fixed-last {
     position: sticky;
-    left: 0;
-    background: #fff; /* Match your design */
-    z-index: 1;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    right: 0;
+    background: #fff;
+    z-index: 2;
+    white-space: nowrap;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+thead .fixed-last {
+    z-index: 3;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    background: #f8f9fa;
+    z-index: 2;
 }
 
 .pagination {

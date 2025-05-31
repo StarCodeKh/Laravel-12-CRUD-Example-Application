@@ -65,6 +65,8 @@
                                     <span class="text-muted small">of <span id="totalItems"></span> records</span>
                                 </div>
                             </div>
+                            <!-- Laravel Route URL -->
+                            <meta name="listing-url" content="{{ route('form.get-data.listing') }}">
                         </div>
                     </div>
                 </nav>
@@ -75,5 +77,5 @@
 @endsection
 
 @section('script')
-    @include('wizardform.include.script')
+    <script src="{{ asset('assets/js/listing-data-table.js') }}"></script>
 @endsection

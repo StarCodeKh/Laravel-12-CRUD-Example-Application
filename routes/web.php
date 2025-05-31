@@ -85,7 +85,9 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
     Route::controller(WizardFormController::class)->group(function () {
         Route::middleware('auth')->group(function () {
             Route::get('form/pagination/page', 'index')->name('form/pagination/page');
-            Route::get('form/pagination/form/get-data/listing', 'getData')->name('form/pagination/form/get-data/listing');
+            Route::get('fform.get-data.listing', 'getData')->name('form.get-data.listing');
+
+            Route::get('form/multi-step-form/page', 'stepFormPage')->name('form/multi-step-form/page');
         });
     });
 });
